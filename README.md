@@ -35,7 +35,7 @@ Install the package in editable mode, with the developer dependencies:
 
 Make your changes in the package definition files located in the `ccsds.packets.europa_clipper` directory.
 
-Update the test reference data as needed in `ccsds.packets.europa_clipper.test`.
+Create/Update the test reference data as needed, next to the updated packet definitions, for example `ccsds.packets.europa_clipper.ecm.test`.
 
 Run the tests to ensure everything is working:
 
