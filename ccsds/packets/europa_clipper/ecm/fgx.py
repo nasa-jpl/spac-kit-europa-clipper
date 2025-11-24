@@ -3,12 +3,12 @@ import ccsdspy
 from ccsdspy.converters import Converter
 
 
-class BytesTo24BitInts(Converter):
+class BytesTo24BitInts(Converter):  # pylint: disable=too-few-public-methods
     """Convert from array of bytes to arrays of 24bits (3 bytes) integer."""
 
     def __init__(self):
-        """Does nothing."""
-        pass
+        """Does nothing. But is needed as the abstract super constructor has to be implemented."""
+        pass  # pylint: disable=unnecessary-pass
 
     def convert(self, field_array):
         """Convert list of arrays of bytes to list of arrays of int, each from 3 bytes."""

@@ -56,12 +56,12 @@ class SudaCatalogEntries(ccsdspy.VariableLength):
         )
 
 
-class InEntriesDecoder(ccsdspy.converters.Converter):
+class InEntriesDecoder(ccsdspy.converters.Converter):  # pylink: disable=too-few-public-methods
     """Converter used to parse the entries in a single packet."""
 
     def __init__(self):
-        """Initialization, default."""
-        pass
+        """Constructor. Abstract super contracutor has to be implemented although nothing needs to be done."""
+        pass  # pylint: disable=unnecessary-pass
 
     @staticmethod
     def __parse_entry(noise_category, entries_stream: ConstBitStream):
@@ -77,7 +77,7 @@ class InEntriesDecoder(ccsdspy.converters.Converter):
         decoded_entry["CATEGORY"] = category
         decoded_entry["EVENTTIME"] = entries_stream.read(16).uint
 
-        # TODO 0 is noise, above 0 is not noise.
+        # TODO 0 is noise, above 0 is not noise. # pylint: disable=fixme
         if category <= noise_category:
             # noise entry, see white paper, section 3.2 third table
             # 5+16+6+5 = 32bits for noise category
@@ -103,7 +103,6 @@ class InEntriesDecoder(ccsdspy.converters.Converter):
             decoded_entry["QVCLIP"] = entries_stream.read(1).uint
             decoded_entry["QTCLIP"] = entries_stream.read(1).uint
             decoded_entry["QICLIP"] = entries_stream.read(1).uint
-            # TODO: check if TOFTPEAK5 properly located
             decoded_entry["TOFTPEAK5"] = entries_stream.read(11).uint
             decoded_entry["TOFMEAN"] = entries_stream.read(8).uint
             decoded_entry["TOFSNR"] = entries_stream.read(4).uint
@@ -124,7 +123,7 @@ class InEntriesDecoder(ccsdspy.converters.Converter):
 
         return decoded_entry
 
-    def convert(self, noise_categories, entry_list):
+    def convert(self, noise_categories, entry_list):  # pylint: disable=arguments-differ
         """Parses the entries.
 
         @param noise_categories: values of the noise categories for all packets

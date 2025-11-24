@@ -24,12 +24,12 @@ class SudaCatalogListStructure(ccsdspy.VariableLength):
                 ccsdspy.PacketField(name="LISTRESERV", bit_length=32, data_type="int"),
             ]
         )
-        self.CATALOG_LIST_MIN_SUFFIX = 0
-        self.CATALOG_LIST_MAX_SUFFIX = 224
+        self.catalog_list_min_suffix = 0
+        self.catalog_list_max_suffix = 224
         self._fields = []
         # self._add_beginning_fields()
         self._add_middle_fields(
-            self.CATALOG_LIST_MIN_SUFFIX, self.CATALOG_LIST_MAX_SUFFIX
+            self.catalog_list_min_suffix, self.catalog_list_max_suffix
         )
         self._add_ending_fields()
 
@@ -58,8 +58,8 @@ class SudaCatalogListStructure(ccsdspy.VariableLength):
             ),
         ]
 
-    def _add_middle_fields(self, min, max):
-        for i in range(min, max):
+    def _add_middle_fields(self, min_field_i, max_field_i):
+        for i in range(min_field_i, max_field_i):
             self._fields.extend(self._middle_fields(i))
 
     def _add_ending_fields(self):

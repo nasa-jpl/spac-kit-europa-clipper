@@ -1,5 +1,6 @@
 """Catalog header packet definition."""
 import ccsdspy
+
 from ccsds.packets.europa_clipper.common.ccsds_header_footer import CRC_FOOTER
 from ccsds.packets.europa_clipper.common.ccsds_header_footer import SECONDARY_HEADER
 
@@ -8,17 +9,17 @@ catalog = ccsdspy.VariableLength(SECONDARY_HEADER)
 catalog.name = "catalog"
 catalog.apid = 1426
 
-current_aid = None
+current_aid = None  # pylint: disable=invalid-name
 
 
 def is_new_header(aid):
     """Identify if the packet is a catalog header or entries for APID 1426."""
-    global current_aid
+    global current_aid  # pylint: disable=global-statement
     if current_aid is None or current_aid != aid:
         current_aid = aid
         return True
-    else:
-        return False
+
+    return False
 
 
 catalog.decision_field = "Accountability ID"

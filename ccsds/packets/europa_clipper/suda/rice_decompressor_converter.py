@@ -11,7 +11,6 @@ from tqdm import tqdm
 logger = logging.getLogger(__name__)
 
 SF_SIZE_BITS: int = 64
-sample_count = None
 
 
 class SCIOType(IntEnum):
@@ -30,8 +29,7 @@ LOW_RESOLUTION_BITS = 10
 HIGH_RESOLUTION_BITS = 12
 
 
-# TODO: Work in progress, the converter is not finalized, needs to be fully migrated to CCSDSpy environment
-class RICEDecompressor(Converter):
+class RICEDecompressor(Converter):  # pylint: disable=too-many-instance-attributes
     """Converter to de-compress RICE encoded field."""
 
     data_resolution_bits = {
@@ -70,14 +68,14 @@ class RICEDecompressor(Converter):
 
         if rice_q == 47:  # limit beyond which residuals are encoded as binary
             return data_stream.read(n_bits + 2).int
-        else:
-            if rice_q & 0x1:  # odd
-                rice_q = int(-((rice_q + 1) >> 1))
-            else:  # even
-                rice_q = int(rice_q >> 1)
 
-            rice_r = data_stream.read(rice_k + 1).uint
-            return (rice_q << (rice_k + 1)) + rice_r
+        if rice_q & 0x1:  # odd
+            rice_q = int(-((rice_q + 1) >> 1))
+        else:  # even
+            rice_q = int(rice_q >> 1)
+
+        rice_r = data_stream.read(rice_k + 1).uint
+        return (rice_q << (rice_k + 1)) + rice_r
 
     def constant(
         self, data_stream: bitstring.ConstBitStream, n_bits=12, sf_size=SF_SIZE_BITS
@@ -89,8 +87,9 @@ class RICEDecompressor(Converter):
             for _ in range(sf_size):
                 output.append(sample)
             return output
-        except IndexError:
+        except IndexError as e:
             logger.debug("input stream is finished")
+            raise e
 
     def verbatim(
         self, data_stream: bitstring.ConstBitStream, n_bits=12, sf_size=SF_SIZE_BITS
@@ -103,8 +102,9 @@ class RICEDecompressor(Converter):
                 sample = data_stream.read(n_bits).uint
                 output.append(sample)
                 return output
-        except IndexError:
+        except IndexError as e:
             logger.debug("input stream is finished")
+            raise e
 
     def rice_decode_linear(
         self,
@@ -113,7 +113,7 @@ class RICEDecompressor(Converter):
         sf_size=SF_SIZE_BITS,
         rice_k_bits=4,
         linear_number=1,
-    ):
+    ):  # pylint: disable=too-many-arguments, too-many-positional-arguments
         """RICE compressed data stream."""
         output = []
         try:
@@ -128,8 +128,9 @@ class RICEDecompressor(Converter):
                 slope = output[-1] - output[-2] if linear_number == 2 else 0
                 output.append(output[-1] + slope + residual)
             return output
-        except IndexError:
+        except IndexError as e:
             logger.debug("input stream is finished")
+            raise e
 
     @staticmethod
     def check_overflow(output):
@@ -151,33 +152,36 @@ class RICEDecompressor(Converter):
         """
         return size * (pre + 1 + post + 1)
 
-    def get_current_sample_count(self, type: SCIOType):
+    def get_current_sample_count(self, scio_type: SCIOType):
         """Return the number of sample expected for a given packets.
 
         Return the number of sample expected for a given packets using its
         SCIOTYPE and the block sizes found in the preceding metadata packet
 
-        @param type: SCIOTYPE of the current packet
+        @param scio_type: SCIOTYPE of the current packet
         @return: the number of sample expected
         """
-        if type == SCIOType.TOF_HG:
+
+        sample_count = None
+
+        if scio_type == SCIOType.TOF_HG:
             self.latest_hs_pre = next(self.hs_pre)
             self.latest_hs_post = next(self.hs_post)
             self.latest_ls_pre = next(self.ls_pre)
             self.latest_ls_post = next(self.ls_post)
 
-        if type in {SCIOType.TOF_HG, SCIOType.TOF_LG, SCIOType.TOF_MG}:
+        if scio_type in {SCIOType.TOF_HG, SCIOType.TOF_LG, SCIOType.TOF_MG}:
             sample_count = self.compute_sample_count(
                 512, self.latest_hs_pre, self.latest_hs_post
             )
-        elif type in {SCIOType.CSA_QV, SCIOType.CSA_QT, SCIOType.CSA_QI}:
+        elif scio_type in {SCIOType.CSA_QV, SCIOType.CSA_QT, SCIOType.CSA_QI}:
             sample_count = self.compute_sample_count(
                 8, self.latest_ls_pre, self.latest_ls_post
             )
 
         return sample_count
 
-    def convert(self, sciotype, sciofrag, data_array):
+    def convert(self, sciotype, sciofrag, data_array):  # pylint: disable=arguments-differ
         """Decompress all the data of all the packets.
 
         @param sciotype: list of the sciotype values
@@ -254,12 +258,13 @@ class RICEDecompressor(Converter):
 
                 if self.check_overflow(frame):
                     logger.error(
-                        f"overflow in frame produced with predictor {predictor}"
+                        "overflow in frame produced with predictor %s", predictor
                     )
             return output
 
-        except IndexError:
+        except IndexError as e:
             logger.debug("input stream is finished")
+            raise e
 
     def set_pre_post(self, df: pandas.DataFrame):
         """Set the ls/hs pre/post attributes used to compute the size of the waveform."""

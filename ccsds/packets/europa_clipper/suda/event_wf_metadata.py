@@ -26,7 +26,7 @@ def _metadata_timestamp():
     ]
 
 
-def EVENTNUMBER_structure():  # noqa: N802
+def EVENTNUMBER_structure():  # pylint: disable=invalid-name
     """Event number fields."""
     return [
         ccsdspy.PacketField(
@@ -43,7 +43,7 @@ def EVENTNUMBER_structure():  # noqa: N802
     ]
 
 
-def NBLOCKS_structure():  # noqa: N802
+def NBLOCKS_structure():  # pylint: disable=invalid-name
     """NBLOCKS fields."""
     return [
         ccsdspy.PacketField(name="NBLOCKS_HS_ERROR", bit_length=1, data_type="uint"),
@@ -61,7 +61,7 @@ def NBLOCKS_structure():  # noqa: N802
     ]
 
 
-def LSADC_Structure():  # noqa: N802
+def LSADC_Structure():  # pylint: disable=invalid-name
     """LSADC fields."""
     return [
         ccsdspy.PacketField(name="LSADC_TRIGGER_NMIN", bit_length=8, data_type="uint"),
@@ -103,7 +103,7 @@ def _metadata_trigger_levels(sensor: Sensors) -> list[ccsdspy.PacketField]:
     ]
 
 
-def TRIGGERMODE_Structure():  # noqa: N802
+def TRIGGERMODE_Structure():  # pylint: disable=invalid-name
     """Trigger Mode fields."""
     return [
         ccsdspy.PacketField(name="TRIGGERMODE_ADC0I", bit_length=2, data_type="uint"),
@@ -139,7 +139,7 @@ def _metadata_tofminmax(min_or_max: TOFMinMax) -> list[ccsdspy.PacketField]:
         ),
         ccsdspy.PacketField(
             name=f"TOF{min_or_max.name}_PAD", bit_length=2, data_type="uint"
-        ),  # TODO make a function
+        ),
     ]
 
 
@@ -154,7 +154,7 @@ def _metadata_lsadc_minmax(lsadc_number: int) -> list[ccsdspy.PacketField]:
         ),
         ccsdspy.PacketField(
             name=f"LSADC{lsadc_number}MINMAX_PAD", bit_length=8, data_type="uint"
-        ),  # TODO make a function
+        ),
     ]
 
 

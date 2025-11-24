@@ -45,9 +45,9 @@ class SudaEventWFPacketStructure(ccsdspy.VariableLength):
         ccsdspy.PacketField(name="CRCSCI0PKT", bit_length=16, data_type="uint"),
     ]
 
-    def __init__(self, type: wf_subpacket_types = None):
+    def __init__(self, subpacket_type: wf_subpacket_types = None):
         """Constructor."""
-        if type == wf_subpacket_types.METADATA:
+        if subpacket_type == wf_subpacket_types.METADATA:
             middle_fields = METADATA_FIELDS
         else:
             middle_fields = [
@@ -62,7 +62,7 @@ class SudaEventWFPacketStructure(ccsdspy.VariableLength):
 
         super().__init__(fields)
 
-        if type == wf_subpacket_types.DATA:
+        if subpacket_type == wf_subpacket_types.DATA:
             self.add_converted_field(
                 CONVERTER_INPUT_FIELDS, CONVERTER_OUTPUT_FIELD, RICEDecompressor()
             )
@@ -90,19 +90,19 @@ event_wf_transmit.decision_fun = is_metadata
 
 
 event_wf_transmit_metadata = SudaEventWFPacketStructure(
-    type=wf_subpacket_types.METADATA
+    subpacket_type=wf_subpacket_types.METADATA
 )
 event_wf_transmit_metadata.name = "event_wf_transmit_metadata"
 event_wf_transmit_metadata.apid = 1424
 event_wf_transmit_metadata.sub_apid = True
 
-event_wf_transmit_data = SudaEventWFPacketStructure(type=wf_subpacket_types.DATA)
+event_wf_transmit_data = SudaEventWFPacketStructure(subpacket_type=wf_subpacket_types.DATA)
 event_wf_transmit_data.name = "event_wf_transmit_data"
 event_wf_transmit_data.apid = 1424
 event_wf_transmit_data.sub_apid = False
 
-# NOT USED
-# TODO: need to check what APID it is associated with
+
+# TODO: need to check what APID it is associated with # pylint: disable=fixme
 # event_wf_fetch = SudaEventWFPacketStructure()
 # event_wf_fetch.name = "event_wf_fetch"
 # event_wf_fetch.apid = 1424

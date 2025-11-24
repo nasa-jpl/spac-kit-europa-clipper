@@ -22,7 +22,7 @@ class MISEDecompressionConverter(Converter):
         default_initial_value=None,
         differences_stored=False,
         width_encoding_bits=4,
-    ):
+    ):  # pylint: disable=too-many-arguments,too-many-positional-arguments
         """Initialization of the decompressor with parameters depending on the configuration of the compression.
 
         @param uncompressed_item_mask:
@@ -40,6 +40,7 @@ class MISEDecompressionConverter(Converter):
     def convert(self, *args):
         """Convert."""
         compressed_fields = args[0]
+        column_number_lst = None
         if len(args) == 3:
             window_columns_lst = args[1]
             column_binning_lst = args[2]
@@ -82,8 +83,8 @@ class MISEDecompressionConverter(Converter):
             # errata sent by John Hayes on 2023/-2/14
             # see https://wiki.jpl.nasa.gov/display/jeowiki/SDS+MISE+Meetings, - becomes a +
             return (ref_value + delta_value) & self.uncompressed_item_mask
-        else:
-            return delta_int & self.uncompressed_item_mask
+
+        return delta_int & self.uncompressed_item_mask
 
     def mise_decomp(
         self,
@@ -139,9 +140,9 @@ class MISEDecompressionConverter(Converter):
                         if bit_packet_value_j == 0:
                             pi0 = value
                         decompressed_data.append(value)
-                value = pi0  # noqa
+                value = pi0  # pylint: disable=possibly-used-before-assignment
         except ReadError as e:
-            logger.error("error while reading compressed frame", e)
+            logger.error("error while reading compressed frame", exc_info=True)
             raise e
 
         return decompressed_data

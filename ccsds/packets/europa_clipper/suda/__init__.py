@@ -1,3 +1,4 @@
+"""EUROPA CLIPPER SUDA Packet Definitions Package."""
 from .catalog_entries import catalog_entries  # noqa
 from .catalog_header import catalog  # noqa
 from .catalog_header import catalog_header  # noqa

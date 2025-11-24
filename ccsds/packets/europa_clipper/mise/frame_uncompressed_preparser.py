@@ -21,15 +21,15 @@ N = 0
 
 def sequence():
     """Simple counter to identify packets APID 1392."""
-    global N
+    global N  # pylint: disable=W0603
     N += 1
     if N <= 90:
         return "90th"
     if N == 91:
         return "91st"
-    else:
-        N = 0
-        return "92nd"
+
+    N = 0
+    return "92nd"
 
 
 frame_uncompressed_preparser.decision_fun = sequence
