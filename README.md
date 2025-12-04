@@ -29,6 +29,12 @@ You might need to upgrade pip first:
 
     pip install --upgrade pip
 
+If you want to use the latest dev version of spac-kit, install it from the sources:
+
+     git clone https://github.com/CCSDSPy/SPaC-Kit.git
+     source {HOME OR PATH TO YOUR VENV}/bin/activate
+     pip install ./SPaC-Kit
+
 Install the package in editable mode, with the developer dependencies:
 
     pip install -e '.[dev]'
