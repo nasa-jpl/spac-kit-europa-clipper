@@ -11,7 +11,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: python:3.9-slim
+      image: python:3.13-slim
     steps:
       - uses: actions/checkout@v4
       - name: Install Poetry
@@ -27,7 +27,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: python:3.9-slim
+      image: python:3.13-slim
     steps:
       - uses: actions/checkout@v4
       - name: Install Poetry
@@ -41,7 +41,7 @@ jobs:
     needs: [lint, test]
     runs-on: ubuntu-latest
     container:
-      image: python:3.9-slim
+      image: python:3.13-slim
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
