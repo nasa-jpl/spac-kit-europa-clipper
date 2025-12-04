@@ -47,3 +47,8 @@ Create/Update the test reference data as needed, next to the updated packet defi
 Run the tests to ensure everything is working:
 
     pytest
+
+
+Before committing your changes update the poetry lock file:
+
+    poetry lock
