@@ -14,6 +14,7 @@ files = [
 
 [package.dependencies]
 idna = ">=2.8"
+typing_extensions = {version = ">=4.5", markers = "python_version < \"3.13\""}
 
 [package.extras]
 trio = ["trio (>=0.31.0) ; python_version < \"3.10\"", "trio (>=0.32.0) ; python_version >= \"3.10\""]
@@ -1682,14 +1683,14 @@ files = [
 
 [[package]]
 name = "spac-kit"
-version = "0.2.1"
+version = "0.2.2"
 description = "Collection of Python tools for working with CCSDS Space Packets"
 optional = false
-python-versions = ">=3.13"
+python-versions = ">=3.12"
 groups = ["main", "dev"]
 files = [
-    {file = "spac_kit-0.2.1-py3-none-any.whl", hash = "sha256:d84b84585aec7eac667c57fc7cd28efb6605eb0260e2eb2c9a927493d385d0f4"},
-    {file = "spac_kit-0.2.1.tar.gz", hash = "sha256:b9ce9d0b33812bfa0e230adb605fcb53da7b27ebbdc2b9d7cfb4cb3a72c0c87e"},
+    {file = "spac_kit-0.2.2-py3-none-any.whl", hash = "sha256:45f89c26e78e92e2687eceb2db5fafff97f0d07b5ee1b45d9dca6fb1a697a852"},
+    {file = "spac_kit-0.2.2.tar.gz", hash = "sha256:77e8eec670949a3a6c6f32c30410083e71a51d3fc7028b0962e43733ffc035c7"},
 ]
 
 [package.dependencies]
@@ -1744,6 +1745,19 @@ groups = ["main", "dev"]
 files = [
     {file = "trove_classifiers-2025.12.1.14-py3-none-any.whl", hash = "sha256:a8206978ede95937b9959c3aff3eb258bbf7b07dff391ddd4ea7e61f316635ab"},
     {file = "trove_classifiers-2025.12.1.14.tar.gz", hash = "sha256:a74f0400524fc83620a9be74a07074b5cbe7594fd4d97fd4c2bfde625fdc1633"},
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.15.0"
+description = "Backported and Experimental Type Hints for Python 3.9+"
+optional = false
+python-versions = ">=3.9"
+groups = ["main", "dev"]
+markers = "python_version == \"3.12\""
+files = [
+    {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
+    {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
 ]
 
 [[package]]
@@ -1981,5 +1995,5 @@ dev = ["bitstring", "flake8", "poetry", "pylint", "pytest", "spac-kit"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.13,<4.0"
-content-hash = "9697f75ab9d24d27138c8e3a5e91f4897a06d3fe50c3b727b5e33347bd44b407"
+python-versions = ">=3.12,<4.0"
+content-hash = "870b1f28a12bbacc64a0b1a736567cb71090c622b37eb4a919353fc6769c1f14"
