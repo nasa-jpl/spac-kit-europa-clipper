@@ -1,11 +1,11 @@
-name: Build, Lint, Test, and Publish
+name: CI Pipeline
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      run_publish:
+        type: boolean
+        default: false
 
 jobs:
   lint:
