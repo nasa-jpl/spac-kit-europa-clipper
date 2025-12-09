@@ -1,5 +1,5 @@
 [project]
-name = "europa-clipper-ccsds-plugin"
+name = "stac-kit-europa-clipper"
 version = "0.1.0.dev0"
 description = "CCSDS packet definitions for Europa Clipper instruments"
 authors = [

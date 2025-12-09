@@ -1,0 +1,28 @@
+{
+  "publication_type": "software",
+  "creators": [
+    {
+      "name": "Garde, Joshua",
+      "affiliation": "NASA Jet Propulsion Laboratory"
+    },
+    {
+      "name": "Loubrieu, Thomas",
+      "affiliation": "NASA Jet Propulsion Laboratory"
+    }
+  ],
+  "title": "stac-kit-europa-clipper",
+  "description": "CCSDS packet definitions for Europa Clipper instruments ECM, MISE and SUDA, as needed by the Science Data System.",
+  "keywords": [
+    "europa-clipper",
+    "ccsds",
+    "packet-definitions",
+    "science-data-system"
+  ],
+  "license": "Apache-2.0",
+  "doi": "10.5281/zenodo.17861892",
+  "communities": [
+    {
+      "identifier": "CCSDSPy"
+    }
+  ]
+}
