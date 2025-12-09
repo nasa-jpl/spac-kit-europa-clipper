@@ -1,4 +1,6 @@
-# Europa-Clipper packet definitions
+# stac-kit-europa-clipper
+
+[![DOI](https://zenodo.org/badge/1089080356.svg)](https://doi.org/10.5281/zenodo.17861892)
 
 For instruments ECM, MISE and SUDA, some of the CCSDS packets definitions are coded here, as needed by the Science Data System.
 
