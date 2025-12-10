@@ -25,12 +25,14 @@ Install the plugin from pypi (NOT PUSLISHED ON PYPI YET):
 
 You can now parse a downlink file from Europa-Clipper:
 
-   parse-downlink --file {your europa-clipper file}
+    parse-downlink --file {your europa-clipper file}
 
-Test files are provided here:
+Small test downlink files are provided here:
 
-ECM instrument: https://github.com/nasa-jpl/spac-kit-europa-clipper/tree/main/ccsds/packets/europa_clipper/ecm/test/in.bin
-SUDA instrument: https://github.com/nasa-jpl/spac-kit-europa-clipper/blob/main/ccsds/packets/europa_clipper/suda/test/in.bin
+| Instrument | File                                                                                                                |
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| ECM        | [file](https://github.com/nasa-jpl/spac-kit-europa-clipper/tree/main/ccsds/packets/europa_clipper/ecm/test/in.bin)  |
+| SUDA       | [file](https://github.com/nasa-jpl/spac-kit-europa-clipper/blob/main/ccsds/packets/europa_clipper/suda/test/in.bin) |
 
 
 ## Developers
