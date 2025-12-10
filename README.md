@@ -4,14 +4,13 @@
 
 For instruments ECM, MISE and SUDA, some of the CCSDS packets definitions are coded here, as needed by the Science Data System.
 
-Those packet definitions are used by the [SPaC-kit CCSDS library](https://github.com/CCSDSPy/SPAC-kit) to decode CCSDS packets, generate documentation and simulated datasets.
+Those packet definitions are used by the [SPaC-kit library](https://github.com/CCSDSPy/SPAC-kit) to decode CCSDS packets, generate documentation and simulated datasets.
 
 ## Prerequisites
 
 This package has been tested with Python 3.12.
 
 ## Users
-
 
 Install the main package:
 
