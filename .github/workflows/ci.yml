@@ -1,13 +1,14 @@
 name: CI Pipeline
 
 on:
-  workflow_call:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
     inputs:
-      run_publish:
-        type: boolean
-        default: false
       environment:
-        type: string
+        type: environment
         default: main
 
 jobs:
@@ -44,10 +45,10 @@ jobs:
         run: poetry run pytest
 
   publish:
-    if: ${{ inputs.run_publish }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [lint, test]
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: ${{ github.event.inputs.environment || 'main'}}
     container:
       image: python:3.12-slim
     steps:
