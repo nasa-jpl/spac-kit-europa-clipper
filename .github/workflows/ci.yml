@@ -10,9 +10,6 @@ on:
         type: string
         default: main
 
-permissions:
-  contents: write
-
 jobs:
   lint:
     runs-on: ubuntu-latest
