@@ -9,12 +9,9 @@ on:
         type: environment
         default: main
 
-permissions:
-  contents: write
-
 jobs:
   call-ci:
     uses: ./.github/workflows/ci.yml
     with:
       run_publish: true
-      environment: ${{ github.event.inputs.environment }}
+      environment: ${{ github.event.inputs.environment || 'main'}}
