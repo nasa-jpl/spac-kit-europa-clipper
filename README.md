@@ -89,6 +89,11 @@ To prepare for a new release candidate PR should be created against the `main`
 branch.  The branch of the release should be prefixed with `release/` with the
 version string preceding. For example: `release/1.0.0`.
 
+```bash
+git checkout -b release/X.Y.Z
+git push
+```
+
 When this branch is created, the "Publish to PyPI" GH Actions workflow will
 run which will automatically publish a build to the PyPI testing environment
 where the build can be tested with any downstream tools/services.
