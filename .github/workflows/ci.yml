@@ -1,11 +1,15 @@
-name: CI Pipeline
+name: Lint, test, and release
 
 on:
-  workflow_call:
-    inputs:
-      run_publish:
-        type: boolean
-        default: false
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -34,8 +38,6 @@ jobs:
       image: python:3.12-slim
     steps:
       - uses: actions/checkout@v4
-      - name: Install build tools
-        run: apt-get update && apt-get install -y gcc build-essential
       - name: Install Poetry
         run: pip install poetry
       - name: Install dependencies
@@ -43,18 +45,32 @@ jobs:
       - name: Run tests
         run: poetry run pytest
 
-  publish:
-    if: ${{ inputs.run_publish }}
+  release:
+    name: Create GitHub Release
+    if: |
+      ${{
+        (github.event_name == 'pull_request' && github.event.pull_request.merged) ||
+        github.event_name == 'workflow_dispatch'
+      }}
     needs: [lint, test]
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    container:
+      image: python:3.12-slim
     steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-      - name: Build and publish to pypi
-        uses: JRubics/poetry-publish@v2.1
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=$(poetry version -s)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Create Release Tag
+        if: 
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git tag v${{ env.VERSION }}
+          git push origin v${{ env.VERSION }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          pypi-token.testpypi: ${{ secrets.PYPI_TOKEN }}
-          repository_name: "testpypi"
-          repository_url: "https://test.pypi.org/legacy/"
+          tag_name: v${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
