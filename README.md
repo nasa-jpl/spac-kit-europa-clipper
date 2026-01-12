@@ -82,3 +82,29 @@ Run the tests to ensure everything is working:
 Before committing your changes update the poetry lock file:
 
     poetry lock
+
+## Releasing
+
+To prepare for a new release candidate PR should be created against the `main`
+branch.  The branch of the release should be prefixed with `release/` with the
+version string preceding. For example: `release/1.0.0`.
+
+When this branch is created, the "Publish to PyPI" GH Actions workflow will
+run which will automatically publish a build to the PyPI testing environment
+where the build can be tested with any downstream tools/services.
+
+To create the new release, merge the PR which will kickoff the "Lint, test, and
+release" CI pipeline. This pipeline will perform an automatic linting and
+run the repo's tests. After both steps pass, the workflow will then tag the
+merged PR commit and create a new release off of that tag.
+
+Once that release is created, several processes will occur:
+
+1. The "Publish to PyPI" workflow will run again, except now it will publish to
+the main PyPI repository.
+
+2. Zenodo will pickup the new release for DOI generation + archival. This
+process is automatic and managed by Zenodo. It is simply kicked off on our end
+once a new release is cut.
+
+Once these processes are complete, a release has been successfully cut.
