@@ -61,9 +61,23 @@ Install the package in editable mode, with the developer dependencies:
 
 Or use poetry:
 
-    pip install poetry
+Install poetry, from your local system, not a virtual environment:
+
+    curl -sSL https://install.python-poetry.org | python3.12 -
+    export PATH=${HOME}/.local/bin:${PATH}
+
+Create a poetry virtual environment and install the package with the developer dependencies:
+
+    poetry env use python3.12
     poetry lock
-    poetry install --with dev
+    poetry install --extras dev
+
+Optionnally, to work with a local version of Spac-Kit, you can use poetry as follows:
+
+    poetry add ../SPaC-Kit
+
+Beware of the version of Spac-Kit you are using, it should be compatible with the version specified in the `pyproject.toml` file of this package.
+
 
 
 IMPORTANT: Install the pre-commit hooks, they will ensure code quality. If you don't do it the automated test running on the Pull Request will fail.
