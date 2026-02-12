@@ -1,6 +1,6 @@
 [project]
 name = "spac-kit-europa-clipper"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "CCSDS packet definitions for Europa Clipper instruments"
 authors = [
     {name = "Joshua Garde",email = "jgarde@jpl.nasa.gov"}
