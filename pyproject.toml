@@ -12,7 +12,7 @@ dependencies = [
     "ccsdspy~=1.4.3",
     "tqdm~=4.66.1",
     "pandas~=2.3.3",
-    "spac-kit @ file:///Users/loubrieu/PycharmProjects/new_ppp",
+    "spac-kit~=0.3.0",
 ]
 
 [build-system]
