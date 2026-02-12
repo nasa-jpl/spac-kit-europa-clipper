@@ -5,7 +5,7 @@ on:
     branches:
       - release/*
   release:
-    types: 
+    types:
       - published
   workflow_dispatch:
     inputs:
@@ -60,7 +60,7 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --extras dev
       - name: Build documentation
         run: |
           cd docs
