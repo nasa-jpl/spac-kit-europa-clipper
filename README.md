@@ -97,6 +97,13 @@ Before committing your changes update the poetry lock file:
 
     poetry lock
 
+### Generate the documentation locally (e.g. for review purposes)
+
+    cd docs
+    poetry run sphinx-build -b html . _build/html
+
+Open the file `docs/_build/html/index.html` in your browser to view the generated documentation.
+
 ## Releasing
 
 To prepare for a new release candidate PR should be created against the `main`
