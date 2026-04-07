@@ -11,7 +11,7 @@ class TestSudaCase:  # pylint: disable=too-few-public-methods
     def test_parse(self):
         """Test SUDA packet parsing, reference comparison."""
         local_dir = os.path.dirname(__file__)
-        compare(local_dir, False, True, False, create_output=False)
+        compare(local_dir, False, True, False, create_output=False, create_spreadsheet=False)
 
 
 if __name__ == "__main__":
