@@ -47,9 +47,13 @@ class SudaCatalogEntries(ccsdspy.VariableLength):
             ccsdspy.PacketField(name="SYNCCATENTRIES", bit_length=16, data_type="uint"),
             ccsdspy.PacketField(name="CRCCATENTRIES", bit_length=16, data_type="uint"),
         ]
-        super().__init__(fields)
-        self.name = "catalog_entries"
-        self.apid = 1426
+        super().__init__(
+            fields,
+            apid=1426,
+            name="catalog_entries",
+            description="Catalog entries packet"
+        )
+
         self.sub_apid = False
         self.add_converted_field(
             ["NOISECATEGORY", "INDENTRIES"], "DECODEDENTRIES", InEntriesDecoder()

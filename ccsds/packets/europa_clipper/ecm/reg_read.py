@@ -21,11 +21,12 @@ read_reg_structure = ccsdspy.VariableLength(
             name="REG", bit_length=16, data_type="uint", array_shape="expand"
         ),
         ccsdspy.PacketField(name="CRC", bit_length=16, data_type="uint"),
-    ]
+    ],
+    apid=1232,
+    name="read_reg_structure",
+    description="ECM Register Read packet structure"
 )
 
 read_reg_structure.add_converted_field(
     "REG", "REG_HEX", StringifyBytesConverter(format="hex")
 )
-read_reg_structure.name = "read_reg_structure"
-read_reg_structure.apid = 1232

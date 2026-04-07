@@ -5,9 +5,6 @@ import ccsdspy
 class SudaCatalogListStructure(ccsdspy.VariableLength):
     """Catalog List packet structure definition."""
 
-    name = "catalog_list"
-    apid = 1419
-
     def __init__(self):
         """Construct the class."""
         super().__init__(
@@ -22,7 +19,10 @@ class SudaCatalogListStructure(ccsdspy.VariableLength):
                 ccsdspy.PacketField(name="LISTHDRSP1", bit_length=32, data_type="int"),
                 ccsdspy.PacketField(name="LISTHDRSP2", bit_length=32, data_type="int"),
                 ccsdspy.PacketField(name="LISTRESERV", bit_length=32, data_type="int"),
-            ]
+            ],
+            apid=1419,
+            name="catalog_list",
+            description="SUDA Catalog List packet structure"
         )
         self.catalog_list_min_suffix = 0
         self.catalog_list_max_suffix = 224

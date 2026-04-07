@@ -5,9 +5,12 @@ from ccsds.packets.europa_clipper.common.ccsds_header_footer import CRC_FOOTER
 from ccsds.packets.europa_clipper.common.ccsds_header_footer import SECONDARY_HEADER
 
 
-catalog = ccsdspy.VariableLength(SECONDARY_HEADER)
-catalog.name = "catalog"
-catalog.apid = 1426
+catalog = ccsdspy.VariableLength(
+    SECONDARY_HEADER,
+    apid=1426,
+    name="catalog",
+    description="SUDA Catalog packet structure"
+)
 
 current_aid = None  # pylint: disable=invalid-name
 
@@ -123,9 +126,10 @@ catalog_header = ccsdspy.VariableLength(
         ),  #
         ccsdspy.PacketField(name="SYNCCATHDR", bit_length=16, data_type="uint"),
         CRC_FOOTER,
-    ]
+    ],
+    apid=1426,
+    name="catalog_header",
+    description="Catalog header packet structure"
 )
 
-catalog_header.name = "catalog_header"
-catalog_header.apid = 1426
 catalog_header.sub_apid = True
