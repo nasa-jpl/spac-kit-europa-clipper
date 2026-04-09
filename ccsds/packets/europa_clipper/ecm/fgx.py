@@ -73,13 +73,14 @@ class FGXPacketStructure(ccsdspy.VariableLength):
                 ccsdspy.PacketField(
                     name="PEC (CRC-16-CCITT)", bit_length=16, data_type="uint"
                 ),
-            ]
+            ],
+            apid=apid,
+            name=f"fg{sensor}_{frequency}",
+            description=f"FGX packet for sensor {sensor} at {frequency} frequency"
         )
-        self.name = f"fg{sensor}_{frequency}"
         self.add_converted_field(
             "FGX_CHANNELS_8bits", "FGX_CHANNELS_24bits", BytesTo24BitInts()
         )
-        self.apid = apid
 
 
 fg1_low = FGXPacketStructure(1, "low", 1218)

@@ -117,7 +117,6 @@ hs_suda = ccsdspy.VariableLength(
             name="FG_GENERAL_REGISTERS", bit_length=16, data_type="uint"
         ),
         ccsdspy.PacketField(name="VERSION", bit_length=24, data_type="uint"),
-    ]
+    ],
+    name="hs_suda",
 )
-
-hs_suda.name = "hs_suda"

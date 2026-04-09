@@ -24,7 +24,7 @@ Install the plugin from pypi (NOT PUSLISHED ON PYPI YET):
 
 You can now parse a downlink file from Europa-Clipper:
 
-    parse-downlink --file {your europa-clipper file}
+    spac-parse --file {your europa-clipper file}
 
 Small test downlink files are provided here:
 
@@ -32,6 +32,13 @@ Small test downlink files are provided here:
 |------------|---------------------------------------------------------------------------------------------------------------------|
 | ECM        | [file](https://github.com/nasa-jpl/spac-kit-europa-clipper/tree/main/ccsds/packets/europa_clipper/ecm/test/in.bin)  |
 | SUDA       | [file](https://github.com/nasa-jpl/spac-kit-europa-clipper/blob/main/ccsds/packets/europa_clipper/suda/test/in.bin) |
+
+
+Generate the documentation locally:
+
+    sphinx-autobuild ./docs/. ./docs/out
+
+
 
 
 ## Developers
@@ -48,12 +55,6 @@ Create a virtual environment and activate it:
 You might need to upgrade pip first:
 
     pip install --upgrade pip
-
-If you want to use the latest dev version of spac-kit, install it from the sources:
-
-     git clone https://github.com/CCSDSPy/SPaC-Kit.git
-     source {HOME OR PATH TO YOUR VENV}/bin/activate
-     pip install ./SPaC-Kit
 
 Install the package in editable mode, with the developer dependencies:
 
@@ -72,7 +73,7 @@ Create a poetry virtual environment and install the package with the developer d
     poetry lock
     poetry install --extras dev
 
-Optionnally, to work with a local version of Spac-Kit, you can use poetry as follows:
+Optionally, to work with a local version of Spac-Kit, you can use poetry as follows:
 
     poetry add ../SPaC-Kit
 
@@ -96,6 +97,13 @@ Run the tests to ensure everything is working:
 Before committing your changes update the poetry lock file:
 
     poetry lock
+
+### Generate the documentation locally (e.g. for review purposes)
+
+    cd docs
+    poetry run sphinx-build -b html . _build/html
+
+Open the file `docs/_build/html/index.html` in your browser to view the generated documentation.
 
 ## Releasing
 

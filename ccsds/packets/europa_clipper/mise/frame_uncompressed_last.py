@@ -1,5 +1,6 @@
 """Uncompressed frame, last frame data packet definition (90th)."""
 import ccsdspy
+
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
@@ -17,7 +18,11 @@ last_frame_packets = [
     CRC_FOOTER,
 ]
 
-last_frame_packet = ccsdspy.VariableLength(last_frame_packets)
-last_frame_packet.name = "last_frame_packet"
-last_frame_packet.apid = 1392
+last_frame_packet = ccsdspy.VariableLength(
+    last_frame_packets,
+    apid=1392,
+    name="last_frame_packet",
+    description="Uncompressed frame, last frame data packet structure"
+)
+
 last_frame_packet.sub_apid = "91st"

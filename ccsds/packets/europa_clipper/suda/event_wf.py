@@ -45,7 +45,7 @@ class SudaEventWFPacketStructure(ccsdspy.VariableLength):
         ccsdspy.PacketField(name="CRCSCI0PKT", bit_length=16, data_type="uint"),
     ]
 
-    def __init__(self, subpacket_type: wf_subpacket_types = None):
+    def __init__(self, subpacket_type: wf_subpacket_types = None, name=None, description=None):
         """Construct the class."""
         if subpacket_type == wf_subpacket_types.METADATA:
             middle_fields = METADATA_FIELDS
@@ -60,7 +60,12 @@ class SudaEventWFPacketStructure(ccsdspy.VariableLength):
         fields.extend(middle_fields)
         fields.extend(self.end_fields)
 
-        super().__init__(fields)
+        super().__init__(
+            fields,
+            apid=1424,
+            name=name,
+            description=description
+        )
 
         if subpacket_type == wf_subpacket_types.DATA:
             self.add_converted_field(
@@ -75,9 +80,9 @@ class SudaEventWFPacketStructure(ccsdspy.VariableLength):
             )
 
 
-event_wf_transmit = SudaEventWFPacketStructure()
-event_wf_transmit.name = "event_wf_transmit"
-event_wf_transmit.apid = 1424
+event_wf_transmit = SudaEventWFPacketStructure(
+    name="event_wf_transmit",
+    description="SUDA event waveform packet,parsing SCI0TYPE to distinguish between metadata and data")
 
 
 def is_metadata(decision_value):
@@ -90,15 +95,19 @@ event_wf_transmit.decision_fun = is_metadata
 
 
 event_wf_transmit_metadata = SudaEventWFPacketStructure(
-    subpacket_type=wf_subpacket_types.METADATA
+    subpacket_type=wf_subpacket_types.METADATA,
+    name="event_wf_transmit_metadata",
+    description="SUDA event waveform metadata packet, identified by SCI0TYPE=0x1"
 )
-event_wf_transmit_metadata.name = "event_wf_transmit_metadata"
-event_wf_transmit_metadata.apid = 1424
+
 event_wf_transmit_metadata.sub_apid = True
 
-event_wf_transmit_data = SudaEventWFPacketStructure(subpacket_type=wf_subpacket_types.DATA)
-event_wf_transmit_data.name = "event_wf_transmit_data"
-event_wf_transmit_data.apid = 1424
+event_wf_transmit_data = SudaEventWFPacketStructure(
+    subpacket_type=wf_subpacket_types.DATA,
+    name="event_wf_transmit_data",
+    description="SUDA event waveform data packet, identified by SCI0TYPE!=0x1 and containing compressed data"
+)
+
 event_wf_transmit_data.sub_apid = False
 
 

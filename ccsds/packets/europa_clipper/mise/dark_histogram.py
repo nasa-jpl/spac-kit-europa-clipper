@@ -1,5 +1,6 @@
 """Dark histogram packet definition."""
 import ccsdspy
+
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
@@ -11,8 +12,8 @@ dark_histogram = ccsdspy.VariableLength(
         ),
         ccsdspy.PacketField(name="Pad", bit_length=16, data_type="fill"),
         CRC_FOOTER,
-    ]
+    ],
+    name="dark_histogram",
+    apid=1398,
+    description="MISE Dark Histogram packet structure",
 )
-
-dark_histogram.name = "dark_histogram"
-dark_histogram.apid = 1398

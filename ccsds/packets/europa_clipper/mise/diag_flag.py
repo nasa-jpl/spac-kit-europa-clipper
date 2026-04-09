@@ -1,9 +1,9 @@
 """Diagnostic Flag packet definition."""
 import ccsdspy
-from ccsds.packets.europa_clipper.common import CRC_FOOTER
-from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
 from .decompression_converter import MISEDecompressionConverter
+from ccsds.packets.europa_clipper.common import CRC_FOOTER
+from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
 diagnostic_flag_pkt = ccsdspy.VariableLength(
     [
@@ -12,11 +12,11 @@ diagnostic_flag_pkt = ccsdspy.VariableLength(
             name="Comp Data", bit_length=8, data_type="uint", array_shape="expand"
         ),
         CRC_FOOTER,
-    ]
+    ],
+    apid=1397,
+    name="diagnostic_flag",
+    description="MISE Diagnostic Flag packet structure",
 )
-
-diagnostic_flag_pkt.name = "diagnostic flag"
-diagnostic_flag_pkt.apid = 1397
 
 converter = MISEDecompressionConverter(
     uncompressed_item_mask=0x1,
