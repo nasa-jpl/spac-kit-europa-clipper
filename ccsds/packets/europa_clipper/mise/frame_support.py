@@ -1,9 +1,9 @@
 """Frame support packet for ancillary data of the compressed frames."""
 import ccsdspy
-from ccsds.packets.europa_clipper.common import CRC_FOOTER
-from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
 from .ancillary_fields import ANCILLARY_DATA_FIELDS
+from ccsds.packets.europa_clipper.common import CRC_FOOTER
+from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
 # Table 59, MISE Flight Software Specification 7489-9100 Revision B
 frame_support_pkt = ccsdspy.VariableLength(
@@ -15,8 +15,8 @@ frame_support_pkt = ccsdspy.VariableLength(
         *ANCILLARY_DATA_FIELDS,
         ccsdspy.PacketField(name="Pad", bit_length=8 * 2, data_type="fill"),
         CRC_FOOTER,
-    ]
+    ],
+    apid=1394,
+    name="frame_support",
+    description="Frame support packet"
 )
-
-frame_support_pkt.name = "frame_support"
-frame_support_pkt.apid = 1394

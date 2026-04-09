@@ -10,11 +10,11 @@ frame_uncompressed_preparser = ccsdspy.VariableLength(
             bit_length=BITS_PER_BYTE,
             array_shape="expand",
         )
-    ]
+    ],
+    apid=1392,
+    name="frame uncompressed pre-parser",
+    description="Uncompressed frame, pre-parsing packet structure."
 )
-
-frame_uncompressed_preparser.apid = 1392
-frame_uncompressed_preparser.name = "MISE uncompressed frame pre-parser"
 
 N = 0
 

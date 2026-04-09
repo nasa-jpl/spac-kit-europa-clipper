@@ -25,9 +25,11 @@ comp_frame_pkt = ccsdspy.VariableLength(
                         "Padding bits are added at the end of the compressed stream to align on bytes."
         ),
         CRC_FOOTER,
-    ]
+    ],
+    apid=1393,
+    name="comp_frame_pkt",
+    description="MISE Compressed Frame packet structure",
 )
-comp_frame_pkt.description = "MISE Compressed frame packet definition."
 
 converter = MISEDecompressionConverter(
     uncompressed_item_mask=0x3FFF,
@@ -38,5 +40,3 @@ converter = MISEDecompressionConverter(
 comp_frame_pkt.add_converted_field(
     ("Comp Data", "Window Columns", "Column Binning"), "Uncomp Data", converter
 )
-comp_frame_pkt.name = "comp_frame_pkt"
-comp_frame_pkt.apid = 1393

@@ -1,5 +1,6 @@
 """Uncompressed frame standard packet definition (0-89)."""
 import ccsdspy
+
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
 
@@ -13,7 +14,12 @@ standard_frame_pkts = [
     CRC_FOOTER,
 ]
 
-standard_frame_pkt = ccsdspy.VariableLength(standard_frame_pkts)
-standard_frame_pkt.name = "standard_frame_pkt"
-standard_frame_pkt.apid = 1392
+standard_frame_pkt = ccsdspy.VariableLength(
+    standard_frame_pkts,
+    apid=1392,
+    name="standard_frame_pkt",
+    description="Uncompressed frame, standard packet structure, "
+                "see specification in MISE Flight Software Specification 7489-9100, Table 55. Ancillary Data "
+)
+
 standard_frame_pkt.sub_apid = "90th"
