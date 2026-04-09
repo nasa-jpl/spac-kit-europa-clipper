@@ -23,5 +23,13 @@ html_theme_options = {
 spacdocs_packet_modules = [
     'ccsds.packets.europa_clipper.e_themis',
     'ccsds.packets.europa_clipper.ecm',
+    'ccsds.packets.europa_clipper.eisnac',
+    'ccsds.packets.europa_clipper.eiswac',
+    'ccsds.packets.europa_clipper.maspex',
+    'ccsds.packets.europa_clipper.mise',
+    'ccsds.packets.europa_clipper.pimsl',
+    'ccsds.packets.europa_clipper.radmon',
+    'ccsds.packets.europa_clipper.reason',
     'ccsds.packets.europa_clipper.suda',
+    'ccsds.packets.europa_clipper.uvs',
 ]
