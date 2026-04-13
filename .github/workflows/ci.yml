@@ -63,7 +63,6 @@ jobs:
           VERSION=$(poetry version -s)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Create Release Tag
-        if: 
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
