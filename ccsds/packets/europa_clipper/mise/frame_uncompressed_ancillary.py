@@ -1,9 +1,9 @@
 """Uncompressed frame, ancillary data packet definition (91th, last)."""
 import ccsdspy
 
-from .ancillary_fields import ANCILLARY_DATA_FIELDS
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
+from .ancillary_fields import ANCILLARY_DATA_FIELDS
 
 # see specification in MISE Flight Software Specification 7489-9100, Table 55. Ancillary Data
 ancillary_data_pkts = [
