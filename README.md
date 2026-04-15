@@ -43,6 +43,8 @@ Generate the documentation locally:
 
 ## Developers
 
+### Update, Test
+
 Clone the repository:
 
     git clone  https://github.com/joshgarde/europa-cliper-ccsds-plugin.git
@@ -105,6 +107,7 @@ Before committing your changes update the poetry lock file:
 
 Open the file `docs/_build/html/index.html` in your browser to view the generated documentation.
 
+
 ## Releasing
 
 To prepare for a new release candidate PR should be created against the `main`
@@ -135,3 +138,9 @@ process is automatic and managed by Zenodo. It is simply kicked off on our end
 once a new release is cut.
 
 Once these processes are complete, a release has been successfully cut.
+
+## Citation with Zenodo
+
+This package can be cited with a DOI provided by Zenodo.
+
+To manage it, follow the [guidelines](https://help.zenodo.org/docs/github/enable-repository/) provided by Zenodo.
