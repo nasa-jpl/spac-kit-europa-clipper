@@ -1,9 +1,9 @@
 """Diagnostic count packet definition."""
 import ccsdspy
 
-from .decompression_converter import MISEDecompressionConverter
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
+from .decompression_converter import MISEDecompressionConverter
 
 diagnostic_count_pkt = ccsdspy.VariableLength(
     [

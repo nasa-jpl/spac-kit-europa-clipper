@@ -19,7 +19,7 @@ jobs:
   publish_to_pypi:
     runs-on: ubuntu-latest
     container:
-      image: python:3.12-slim
+      image: python:3.12
     environment: |
       ${{
         github.event.inputs.environment ||
@@ -46,7 +46,7 @@ jobs:
   publish_docs:
     runs-on: ubuntu-latest
     container:
-      image: python:3.12-slim
+      image: python:3.12
     needs: publish_to_pypi
     permissions:
       contents: read

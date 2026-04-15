@@ -1,9 +1,9 @@
 """Compressed frame packet definition."""
 import ccsdspy
 
-from .decompression_converter import MISEDecompressionConverter
 from ccsds.packets.europa_clipper.common import CRC_FOOTER
 from ccsds.packets.europa_clipper.common import SECONDARY_HEADER
+from .decompression_converter import MISEDecompressionConverter
 
 # offset_count = 48 + 32 + 16 + 32 + 9*4 + 4 + 14
 comp_frame_pkt = ccsdspy.VariableLength(
