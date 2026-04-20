@@ -72,7 +72,6 @@ Install poetry, from your local system, not a virtual environment:
 Create a poetry virtual environment and install the package with the developer dependencies:
 
     poetry env use python3.12
-    poetry lock
     poetry install --extras dev
 
 Optionally, to work with a local version of Spac-Kit, you can use poetry as follows:
