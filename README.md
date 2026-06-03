@@ -17,7 +17,7 @@ Install the main package:
     pip install spac-kit
 
 
-Install the plugin from pypi (NOT PUSLISHED ON PYPI YET):
+Install the plugin from pypi (NOT PUBLISHED ON PYPI YET):
 
     pip install spac-kit-europa-clipper
 
