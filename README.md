@@ -1,6 +1,6 @@
 # SPaC-kit-europa-clipper
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17861892.svg)](https://doi.org/10.5281/zenodo.17861892)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17873346.svg)](https://doi.org/10.5281/zenodo.17873346)
 
 For instruments ECM, MISE and SUDA, some of the CCSDS packets definitions are coded here, as needed by the Science Data System.
 
